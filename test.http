@@ -1,0 +1,58 @@
+### register
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name":"test",
+  "email":"test@yahoo.com",
+  "password":"123456"
+}
+
+
+### login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email":"jahan@yahoo.com",
+  "password":"123456"
+}
+
+### logout
+GET  http://localhost:3000/api/auth/logout
+
+
+
+###################################################
+
+### show all user (only admin access)
+GET  http://localhost:3000/api/user
+
+### show single user
+GET  http://localhost:3000/api/user/69516f28c7dd905d9c739433
+
+### show correct user
+GET  http://localhost:3000/api/user/showme
+
+
+### update user
+PATCH  http://localhost:3000/api/user/updateuser
+Content-Type: application/json
+
+{
+  "name":"test2",
+  "email":"test2@yahoo.com"
+}
+
+
+### update password
+PATCH  http://localhost:3000/api/user/updatepassword
+Content-Type: application/json
+
+{
+  "oldPassword":"123456",
+  "newPassword":"123654"
+}
+
+### delete user (only admin access)
+DELETE  http://localhost:3000/api/user/delete/69516f28c7dd905d9c739433
