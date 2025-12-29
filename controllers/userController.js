@@ -5,12 +5,7 @@ import {
   unauthenticatedError,
   notFoundError,
 } from '../errors/index.js';
-import {
-  createTokenUser,
-  attachCookies,
-  checkPermissions,
-} from '../utils/index.js';
-import user from '../models/user.js';
+import { createTokenUser, checkPermissions } from '../utils/index.js';
 
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({ role: 'user' });

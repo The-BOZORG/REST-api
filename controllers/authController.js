@@ -24,10 +24,6 @@ const register = asyncHandler(async (req, res) => {
     .json({ msg: 'user register success', user: tokenUser, accessToken });
 });
 
-const shouwRegister = asyncHandler(async (req, res) => {
-  res.send('shouwRegister');
-});
-
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -52,10 +48,6 @@ const login = asyncHandler(async (req, res) => {
     .json({ msg: 'user login success', user: tokenUser, accessToken });
 });
 
-const showLogin = asyncHandler(async (req, res) => {
-  res.send('showLogin');
-});
-
 const logout = asyncHandler(async (req, res) => {
   res.cookie('token', 'logout', {
     httpOnly: true,
@@ -64,4 +56,4 @@ const logout = asyncHandler(async (req, res) => {
   res.status(200).json({ msg: 'user logout!' });
 });
 
-export { register, shouwRegister, login, showLogin, logout };
+export { register, login, logout };

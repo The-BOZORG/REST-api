@@ -1,6 +1,7 @@
 import createTokenUser from './createToken.js';
 import { createJwt, verifyJwt, attachCookies } from './jwt.js';
 import checkPermissions from './checkPermissions.js';
+import { loginSchema, registerSchema } from './validation.js';
 
 export {
   createJwt,
@@ -8,4 +9,6 @@ export {
   attachCookies,
   createTokenUser,
   checkPermissions,
+  loginSchema,
+  registerSchema,
 };

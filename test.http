@@ -3,11 +3,10 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "name":"test",
-  "email":"test@yahoo.com",
-  "password":"123456"
+  "name": "Ali",
+  "email": "test@test.com",
+  "password": "123"
 }
-
 
 ### login
 POST http://localhost:3000/api/auth/login
