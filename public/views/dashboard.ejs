@@ -1,0 +1,189 @@
+<%- include('partials/head', { pageTitle: title || 'Dashboard - Auth System' }) %>
+
+  <body>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="24" stroke="url(#gradient)" stroke-width="2" />
+            <path d="M25 15V25L32 32" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="gradient" x1="0" y1="0" x2="50" y2="50">
+                <stop offset="0%" style="stop-color:#6366f1" />
+                <stop offset="100%" style="stop-color:#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <h2>Dashboard</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#" class="nav-item active">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M3 9L10 2L17 9V17C17 17.5304 16.7893 18.0391 16.4142 18.4142C16.0391 18.7893 15.5304 19 15 19H5C4.46957 19 3.96086 18.7893 3.58579 18.4142C3.21071 18.0391 3 17.5304 3 17V9Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Home</span>
+          </a>
+          <a href="/users" class="nav-item" id="usersLink" style="display: none;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path
+                d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Users</span>
+          </a>
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M7 17H4C3.46957 17 2.96086 16.7893 2.58579 16.4142C2.21071 16.0391 2 15.5304 2 15V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H7M13 13L17 9M17 9L13 5M17 9H7"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>Logout</span>
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <header class="dashboard-header">
+          <div>
+            <h1 class="dashboard-title">Welcome, <span id="userName">User</span>! 👋</h1>
+            <p class="dashboard-subtitle">Here's what's happening with your account</p>
+          </div>
+          <div class="user-badge" id="userRole">User</div>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path
+                  d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Total Users</p>
+              <h3 class="stat-value" id="totalUsers">-</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Account Status</p>
+              <h3 class="stat-value">Active</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Authentication</p>
+              <h3 class="stat-value">Verified ✓</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2 class="info-card-title">Account Information</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Name:</span>
+              <span class="info-value" id="userNameFull">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email:</span>
+              <span class="info-value" id="userEmail">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">User ID:</span>
+              <span class="info-value" id="userId">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Role:</span>
+              <span class="info-value role-badge" id="userRoleFull">-</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2 class="info-card-title">Update Profile</h2>
+          <form id="updateUserForm" class="update-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="updateName">Name</label>
+                <input type="text" id="updateName" placeholder="Enter your name" required>
+              </div>
+              <div class="form-group">
+                <label for="updateEmail">Email</label>
+                <input type="email" id="updateEmail" placeholder="Enter your email" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-update">Update Profile</button>
+          </form>
+        </div>
+
+        <div class="info-card">
+          <h2 class="info-card-title">Change Password</h2>
+          <form id="updatePasswordForm" class="update-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="oldPassword">Current Password</label>
+                <input type="password" id="oldPassword" placeholder="Enter current password" required>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="Enter new password" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-update">Change Password</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div id="alertModal" class="alert-modal">
+      <div class="alert-content">
+        <p id="alertText"></p>
+        <button onclick="closeAlert()" class="alert-btn">Close</button>
+      </div>
+    </div>
+
+    <%- include('partials/footer', { scripts: ['/js/dashboard.js'] }) %>
+  </body>
+
+  </html>

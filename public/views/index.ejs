@@ -1,0 +1,47 @@
+<%- include('partials/head', { pageTitle: title || 'Home' , extraStyles: ['/css/pages.css'] }) %>
+
+  <body>
+    <div class="header">
+      <div class="logo-section">
+        <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="24" stroke="url(#gradient)" stroke-width="2" />
+          <path d="M25 15V25L32 32" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="gradient" x1="0" y1="0" x2="50" y2="50">
+              <stop offset="0%" style="stop-color:#6366f1" />
+              <stop offset="100%" style="stop-color:#8b5cf6" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <h2>Home</h2>
+      </div>
+
+      <div class="auth-buttons">
+        <a href="/auth" class="btn-nav">Login</a>
+        <a href="/auth" onclick="selectRegister()" class="btn-nav primary">Register</a>
+      </div>
+    </div>
+
+    <div class="home-container">
+      <div class="home-content">
+        <h1>Welcome to REST-api Project</h1>
+        <p>A modern and secure authentication system for your applications. Sign up or log in to get started with our
+          platform.</p>
+
+        <div class="home-buttons">
+          <a href="/auth" onclick="selectRegister()" class="btn-large register">Create Account</a>
+          <a href="/auth" class="btn-large login">Sign In</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function selectRegister() {
+        localStorage.setItem('authTab', 'register');
+      }
+    </script>
+
+    <%- include('partials/footer') %>
+  </body>
+
+  </html>
