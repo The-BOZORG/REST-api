@@ -1,13 +1,15 @@
-# REST API with Modern Frontend
+# REST API Project
 
-A authentication RESTful system.
+A simple and modular REST API built with Node.js and Express.
 
 ## Features
 
+- Express-based REST API - MVC-style project structure
 - User Authentication (Login/Register)
-- Protected Dashboard
-- User Profile Management
 - Role-Based Access Control (Admin/User)
+- Centralized error handling
+- Environment configuration support
+- **Frontend UI generated using AI tools**
 
 ## Getting Started
 
