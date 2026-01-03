@@ -3,6 +3,7 @@ import asyncHandler from '../utils/asyncHandler.js';
 import { badRequestError, unauthenticatedError } from '../errors/index.js';
 import { createTokenUser, attachCookies } from '../utils/index.js';
 
+//register
 const register = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -24,6 +25,7 @@ const register = asyncHandler(async (req, res) => {
     .json({ msg: 'user register success', user: tokenUser, accessToken });
 });
 
+//login
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -48,6 +50,7 @@ const login = asyncHandler(async (req, res) => {
     .json({ msg: 'user login success', user: tokenUser, accessToken });
 });
 
+//logout
 const logout = asyncHandler(async (req, res) => {
   res.cookie('token', 'logout', {
     httpOnly: true,

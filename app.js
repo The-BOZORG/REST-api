@@ -27,7 +27,7 @@ connectDB();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public', 'views'));
 
-//cors configuration - must be before routes
+//cors configuration 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header(
