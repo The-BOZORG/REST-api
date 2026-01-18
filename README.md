@@ -56,8 +56,8 @@ All API endpoints are accessible at `http://localhost:{PORT}/api`
 
 ## Security Features
 
-- JWT tokens (Access & Refresh)
-- HttpOnly cookies for refresh tokens
+- JWT tokens
+- HttpOnly cookies
 - Password hashing with bcrypt
 - Protected routes
 - Role-based authorization

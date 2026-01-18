@@ -1,38 +1,26 @@
 import jwt from 'jsonwebtoken';
 
-const createJwt = (payload) => {
-  const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+const createJwt = ({ payload }) => {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRESIN,
   });
-
-  const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
-  });
-
-  return { accessToken, refreshToken };
+  return token;
 };
 
-const verifyJwt = ({ token, type = 'access' }) => {
-  const secret =
-    type === 'access'
-      ? process.env.JWT_ACCESS_SECRET
-      : process.env.JWT_REFRESH_SECRET;
-
-  return jwt.verify(token, secret);
+const verifyJwt = ({ token }) => {
+  return jwt.verify(token, process.env.JWT_SECRET);
 };
 
 const attachCookies = ({ res, user }) => {
-  const { accessToken, refreshToken } = createJwt(user);
+  const token = createJwt({ payload: user });
 
-  res.cookie('refreshToken', refreshToken, {
+  const oneDay = 1000 * 60 * 60 * 24;
+  res.cookie('token', token, {
     httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === 'production',
     signed: true,
-    sameSite: 'strict',
-    maxAge: 1000 * 60 * 60 * 24 * 7,
   });
-
-  return accessToken;
 };
 
 export { createJwt, verifyJwt, attachCookies };
